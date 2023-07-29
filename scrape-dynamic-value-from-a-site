@@ -1,0 +1,16 @@
+    from selenium import webdriver
+    import time
+    import re
+    
+    options = webdriver.ChromeOptions()
+    options.binary_location = "C:/Program Files/Google/Chrome Dev/Application/chrome.exe"
+    driver = webdriver.Chrome(options=options)
+    #################
+    driver.get('https://automated.pythonanywhere.com/')
+    time.sleep(3)
+    element = driver.find_element(by='xpath', value='/html/body/div[1]/div/h1[2]')
+    print(element.text)
+    pattern = re.compile('\d{2}')
+    match = pattern.findall(element.text)
+    
+    print(int(match[0]))
